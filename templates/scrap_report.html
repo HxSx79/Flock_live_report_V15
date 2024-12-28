@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Decatur MX - Flock Scrap Report</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="mobile-body">
+    <header class="mobile-header">
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='images/decatur-logo.png') }}" alt="Decatur Logo">
+            <h1>Scrap Report</h1>
+        </div>
+        <div class="header-right">
+            <div class="datetime">{{ current_datetime }}</div>
+        </div>
+    </header>
+
+    <div class="main-content mobile-content">
+        <!-- Scrap reporting form -->
+        <div class="scrap-form-container">
+            <h2>Report Scrap</h2>
+            <form id="scrap-form" class="scrap-form">
+                <div class="form-group">
+                    <label for="line-select">Line:</label>
+                    <select id="line-select" name="line" required>
+                        <option value="">Select Line</option>
+                        <option value="1">Line 1</option>
+                        <option value="2">Line 2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="program-select">Program:</label>
+                    <select id="program-select" name="program" required>
+                        <option value="">Select Program</option>
+                        <!-- Programs will be populated from BOM -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="part-select">Part Number:</label>
+                    <select id="part-select" name="part_number" required disabled>
+                        <option value="">Select Part Number</option>
+                        <!-- Part numbers will be populated based on selected program -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="defect-code">Defect Code:</label>
+                    <select id="defect-code" name="defect_code" required>
+                        <option value="">Select Defect Code</option>
+                        <!-- Defect codes will be populated from Scrap Book -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="defect-description">Description:</label>
+                    <select id="defect-description" name="defect_description" required>
+                        <option value="">Select Description</option>
+                        <!-- Descriptions will be populated from Scrap Book -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" name="comments" rows="3"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">Submit Report</button>
+                    <button type="reset" class="reset-button">Clear</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Scrap history table -->
+        <div class="scrap-history-container">
+            <h2>Recent Reports</h2>
+            <div class="scrap-history-wrapper">
+                <table class="scrap-history">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Line</th>
+                            <th>Program</th>
+                            <th>Part</th>
+                            <th>Code</th>
+                            <th>Description</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scrap-history-body">
+                        <!-- Scrap history will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scrap_report.js') }}"></script>
+</body>
+</html> 
